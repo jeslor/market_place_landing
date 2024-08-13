@@ -24,6 +24,14 @@ const config: Config = {
         "primary8": "#d1c5ad",
         "primary9": "#e4dcce",
         "primary10": "#f6f3ef",
+      },
+      screens:{
+        "smallPhone": "320px",
+        "phone": "425px",
+        "tablet": "768px",
+        "laptop": "1024px",
+        "desktop": "1440px",
+        "largeDesktop": "2560px",
       }
     },
   },
