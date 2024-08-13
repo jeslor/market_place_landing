@@ -14,7 +14,7 @@ Welcome to the **Modern Online Shop Landing Page**! This project is a sleek and 
 
 - **Frontend:** Next.js, React
 - **Styling:** Tailwind CSS, CSS Modules
-- **Icons:** Heroicons, FontAwesome
+- **Icons:** Iconify
 
 ## 🚀 Getting Started
 
