@@ -7,21 +7,22 @@ export const products = [
 },{
     id: 2,
     name: "blouses",
-    icon:"hugeicons:dress-0",
+    icon:"hugeicons:dress-07",
 },
 {
-    id: 3,
-    name: "shirts",
-    icon:"hugeicons:t-shirt",
-},{
     id: 4,
     name: "skirts",
     icon:"solar:skirt-outline",
 },
 {
     id: 5,
-    name: "shorts",
-    icon:"emojione:bikini",
+    name: "bikins",
+    icon:"mdi:underwear",
+},
+{
+    id: 3,
+    name: "shirts",
+    icon:"hugeicons:t-shirt",
 },
 {
     id: 6,
@@ -32,5 +33,10 @@ export const products = [
     id: 7,
     name: "jackets",
     icon:"game-icons:moncler-jacket",
+},
+{
+    id: 8,
+    name: "shorts",
+    icon:"hugeicons:shorts-pants",
 }
 ]

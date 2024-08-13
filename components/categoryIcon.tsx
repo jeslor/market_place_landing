@@ -8,9 +8,9 @@ const CategoryIcon = ({product}:{
     }
 }) => {
   return (
-    <div className="text-primary10 text-[2rem] h-[50px] w-[50px] flex flex-col">
-        <Icon icon={product.icon} />
-        <p></p>
+    <div className="text-primary10 mx-8  flex flex-col items-center">
+        <Icon className="text-[3rem]" icon={product.icon} />
+        <p className="text-[14px] opacity-65 pt-2">{product.name}</p>
     </div>
   )
 }
