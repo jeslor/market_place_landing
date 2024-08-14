@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.gradient {
+body {
   background-color: #2a2416;
 }
