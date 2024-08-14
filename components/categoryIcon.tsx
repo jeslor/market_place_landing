@@ -25,6 +25,7 @@ const [displacementPosition, setDisplacementPosition] = useState(0);
         setDisplacementPosition(0);
     }else{
         setDisplacementPosition(-(middlePosition - position) * 5);
+
     }
  
     })
