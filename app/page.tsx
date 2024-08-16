@@ -17,23 +17,6 @@ const Landing = () => {
 
 
 
-
-
- useEffect(() => {
-  const handleMouseMove = (e:any) => {
-    setCurrGradientPosition({
-      x: `${e.clientX}px`,
-      y: `${e.clientY}px`
-    })
-  }
-
-  console.log(currGradientPosition.x, currGradientPosition.y);
-
-  window.addEventListener('mousemove', handleMouseMove);
-  
- }, [currGradientPosition.x, currGradientPosition.y])
-
-
   useEffect(() => {
     setNewStyle({
       background: `radial-gradient(circle at ${currGradientPosition.x} ${currGradientPosition.y}, #52462e70, transparent ${gradientRadius}px)`
@@ -49,7 +32,7 @@ const Landing = () => {
         <div style={{gridTemplateColumns:`repeat(${products.length}, 1fr)`}} className={`flex flex-wrap tablet:grid grid-cols-${products.length} pt-12 px-4  tablet:pt-[14rem] gap-4 laptop:gap-[2.8rem] desktop:gap-[4rem]`}>
             {
                 products.map((product, index) => (
-                  <CategoryIcon product={product} position={index+1} totalProducts={products.length}/>
+                  <CategoryIcon product={product} position={index+1} totalProducts={products.length} currGradientPosition={currGradientPosition} setGradientRadius={setGradientRadius} setCurrGradientPosition={setCurrGradientPosition}/>
                 ))
             }
         </div>
