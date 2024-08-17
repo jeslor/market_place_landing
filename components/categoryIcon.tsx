@@ -35,28 +35,31 @@ const [displacementPosition, setDisplacementPosition] = useState(0);
     useEffect(() => {
         const handleMouseMove = (e:any) => {
             let currElement = document.getElementById(`categoryIcon${product.id}`);
-            // if (currElement) {
-            //     let rect = currElement.getBoundingClientRect();
-            //    const ClientY = e.clientY;
-            //     const ClientX = e.clientX;
-            //     if(ClientY < rect.top || ClientY > rect.bottom || ClientX < rect.left || ClientX > rect.right){
-            //        setGradientRadius(400);
-            //     }else{
-            //         setGradientRadius(150)
-                    
-            //     }
+            if (currElement) {
+                currElement.addEventListener('mouseover', () => {
+                    let elementTop = currElement.getBoundingClientRect().top;
+                    let elementLeft = currElement.getBoundingClientRect().left;
+                    let elementWidth = currElement.getBoundingClientRect().width;
+                    let elementHeight = currElement.getBoundingClientRect().height;
+                    const newX = elementLeft + elementWidth/2;
+                    const newY = elementTop + elementHeight/2;
+                    setGradientRadius(120);
+                    setCurrGradientPosition({
+                        x: `${newX}px`,
+                        y: `${newY}px`
+                    });
+                })
+                currElement.addEventListener('mouseleave', () => {
+                    setGradientRadius(400);
+                    setCurrGradientPosition({
+                        x: `${e.clientX}px`,
+                        y: `${e.clientY}px`
+                      })
+                })
                 
-            // }
-            currElement?.addEventListener('mouseover', () => {
-                setGradientRadius(120);
-            })
-            currElement?.addEventListener('mouseleave', () => {
-                setGradientRadius(400);
-            })
-          setCurrGradientPosition({
-            x: `${e.clientX}px`,
-            y: `${e.clientY}px`
-          })
+            }
+         
+        
         }
       
         window.addEventListener('mousemove', handleMouseMove);

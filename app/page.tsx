@@ -26,7 +26,7 @@ const Landing = () => {
 
 
   return (
-    <div id="mainEntry" style={newStyle}  className="min-h-screen h-full  flex flex-col w-full items-center fixed transition">
+    <div id="mainEntry" style={newStyle}  className="min-h-screen h-full  flex flex-col w-full items-center fixed">
       <div className="flex flex-col items-center justify-center h-full">
         <h1 id="fashionHeader" className="bg-clip-text text-transparent bg-gradient-radial from-primary9 to-primary2  text-[3rem] uppercase font-bold">nusoura fashions</h1>
         <div style={{gridTemplateColumns:`repeat(${products.length}, 1fr)`}} className={`flex flex-wrap tablet:grid grid-cols-${products.length} pt-12 px-4  tablet:pt-[14rem] gap-4 laptop:gap-[2.8rem] desktop:gap-[4rem]`}>
