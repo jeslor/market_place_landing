@@ -32,7 +32,7 @@ const Landing = () => {
         <div style={{gridTemplateColumns:`repeat(${products.length}, 1fr)`}} className={`flex flex-wrap tablet:grid grid-cols-${products.length} pt-12 px-4  tablet:pt-[14rem] gap-4 laptop:gap-[2.8rem] desktop:gap-[4rem]`}>
             {
                 products.map((product:any, index) => (
-                  <CategoryIcon product={product} position={index+1} totalProducts={products.length} currGradientPosition={currGradientPosition} setGradientRadius={setGradientRadius} setCurrGradientPosition={setCurrGradientPosition}/>
+                  <CategoryIcon key={index} product={product} position={index+1} totalProducts={products.length} currGradientPosition={currGradientPosition} setGradientRadius={setGradientRadius} setCurrGradientPosition={setCurrGradientPosition}/>
                 ))
             }
         </div>

@@ -18,6 +18,7 @@ const CategoryIcon = ({product, position, totalProducts, setGradientRadius, setC
     }
 }) => {
 const [displacementPosition, setDisplacementPosition] = useState(0);
+const [isMouseOver, setIsMouseOver] = useState(false);
 
 
     useEffect(() => {
@@ -37,29 +38,14 @@ const [displacementPosition, setDisplacementPosition] = useState(0);
             let currElement = document.getElementById(`categoryIcon${product.id}`);
             if (currElement) {
                 currElement.addEventListener('mouseover', () => {
-                    let elementTop = currElement.getBoundingClientRect().top;
-                    let elementLeft = currElement.getBoundingClientRect().left;
-                    let elementWidth = currElement.getBoundingClientRect().width;
-                    let elementHeight = currElement.getBoundingClientRect().height;
-                    const newX = elementLeft + elementWidth/2;
-                    const newY = elementTop + elementHeight/2;
-                    setGradientRadius(120);
-                    setCurrGradientPosition({
-                        x: `${newX}px`,
-                        y: `${newY}px`
-                    });
+                    setIsMouseOver(true);
                 })
                 currElement.addEventListener('mouseleave', () => {
-                    setGradientRadius(400);
-                    setCurrGradientPosition({
-                        x: `${e.clientX}px`,
-                        y: `${e.clientY}px`
-                      })
+                    setIsMouseOver(false);
+                   
                 })
                 
             }
-         
-        
         }
       
         window.addEventListener('mousemove', handleMouseMove);
@@ -68,6 +54,39 @@ const [displacementPosition, setDisplacementPosition] = useState(0);
         }
         
        }, [currGradientPosition.x, currGradientPosition.y])
+
+
+    useEffect(() => {
+        
+        if(isMouseOver){
+            let currElement = document.getElementById(`categoryIcon${product.id}`);
+            if (currElement) {
+                let elementTop = currElement.getBoundingClientRect().top;
+                let elementLeft = currElement.getBoundingClientRect().left;
+                let elementWidth = currElement.getBoundingClientRect().width;
+                let elementHeight = currElement.getBoundingClientRect().height;
+                const newX = elementLeft + elementWidth/2;
+                const newY = elementTop + elementHeight/2;
+                setGradientRadius(120);
+                setCurrGradientPosition({
+                    x: `${newX}px`,
+                    y: `${newY}px`
+                });
+                
+            }else{
+                setCurrGradientPosition({
+                    x: `50%`,
+                    y: `50%`
+                });
+                setGradientRadius(400);
+
+
+            }
+           
+        }
+    }, [isMouseOver, currGradientPosition.x, currGradientPosition.y])
+
+
     
   return (
     <div id={`categoryIcon${product.id}`} style={{transform:`translateY(${displacementPosition}rem)`, transitionDelay:`${position/3}s`, transitionProperty:"transform", transitionTimingFunction:"ease-out", transitionDuration:"200ms"}} className={`text-primary10 flex flex-col font-semibold items-center justify-center h-[80px] laptop:h-[90px] desktop:h-[100px] w-[80px] laptop:w-[90px] desktop:w-[100px] hover:bg-gradient-to-t from-primary1 to-primary2 rounded-[50%] shadow-2xl cursor-pointer border-[1px] border-primary4 transition-all hover:scale-110`}>
