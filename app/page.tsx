@@ -21,7 +21,7 @@ const Landing = () => {
     setNewStyle({
       background: `radial-gradient(circle at ${currGradientPosition.x} ${currGradientPosition.y}, #52462e70, transparent ${gradientRadius}px)`
     })
-  }, [currGradientPosition.x, currGradientPosition.y])
+  }, [currGradientPosition.x, currGradientPosition.y, gradientRadius])
   
 
 
@@ -32,7 +32,7 @@ const Landing = () => {
         <div style={{gridTemplateColumns:`repeat(${products.length}, 1fr)`}} className={`flex flex-wrap tablet:grid grid-cols-${products.length} pt-12 px-4  tablet:pt-[14rem] gap-4 laptop:gap-[2.8rem] desktop:gap-[4rem]`}>
             {
                 products.map((product:any, index) => (
-                  <CategoryIcon key={index} product={product} position={index+1} totalProducts={products.length} currGradientPosition={currGradientPosition} setGradientRadius={setGradientRadius} setCurrGradientPosition={setCurrGradientPosition}/>
+                  <CategoryIcon key={index} product={product} position={index+1} totalProducts={products.length} currGradientPosition={currGradientPosition} gradientRadius={gradientRadius} setGradientRadius={setGradientRadius} setCurrGradientPosition={setCurrGradientPosition}/>
                 ))
             }
         </div>

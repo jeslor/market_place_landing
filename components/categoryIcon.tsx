@@ -2,7 +2,7 @@
 import {useEffect, useState} from 'react';
 import { Icon } from '@iconify/react';
 
-const CategoryIcon = ({product, position, totalProducts, setGradientRadius, setCurrGradientPosition, currGradientPosition}:{
+const CategoryIcon = ({product, position, totalProducts, setGradientRadius, setCurrGradientPosition, currGradientPosition,gradientRadius }:{
     product:{
         name:string,
         icon:string,
@@ -10,6 +10,7 @@ const CategoryIcon = ({product, position, totalProducts, setGradientRadius, setC
     },
     position:number
     totalProducts:number,
+    gradientRadius:number,
     setGradientRadius:Function,
     setCurrGradientPosition:Function,
     currGradientPosition:{
@@ -18,7 +19,7 @@ const CategoryIcon = ({product, position, totalProducts, setGradientRadius, setC
     }
 }) => {
 const [displacementPosition, setDisplacementPosition] = useState(0);
-const [isMouseOver, setIsMouseOver] = useState(false);
+const [resetPosition, setResetPosition] = useState(true);
 
 
     useEffect(() => {
@@ -34,62 +35,41 @@ const [isMouseOver, setIsMouseOver] = useState(false);
     });
 
     useEffect(() => {
+        let currElement = document.getElementById(`categoryIcon${product.id}`);
         const handleMouseMove = (e:any) => {
-            let currElement = document.getElementById(`categoryIcon${product.id}`);
+            const {clientX, clientY} = e;
             if (currElement) {
-                currElement.addEventListener('mouseover', () => {
-                    setIsMouseOver(true);
-                })
-                currElement.addEventListener('mouseleave', () => {
-                    setIsMouseOver(false);
-                   
-                })
-                
+                const {top,left,right, bottom, width, height} = currElement?.getBoundingClientRect();
+                if(clientX >= left && clientX <= right && clientY >= top && clientY <= bottom){
+                    setResetPosition(false);
+                    setCurrGradientPosition({x:`${left + width/2}px`, y:`${top +  height/2}px`});
+                    setGradientRadius(width > height ? width : height);
+                }else{
+                    setResetPosition(true);
+                    setCurrGradientPosition({x:`50%`, y:`50%`});
+                    setGradientRadius(400);
+                }
+
             }
         }
+
+            
+        
       
         window.addEventListener('mousemove', handleMouseMove);
         return () => {
           window.removeEventListener('mousemove', handleMouseMove);
+          currElement?.removeEventListener('mouseenter', () => {});
+         currElement?.removeEventListener('mouseleave', () => {});
         }
         
-       }, [currGradientPosition.x, currGradientPosition.y])
+       }, [resetPosition]);
 
-
-    useEffect(() => {
-        
-        if(isMouseOver){
-            let currElement = document.getElementById(`categoryIcon${product.id}`);
-            if (currElement) {
-                let elementTop = currElement.getBoundingClientRect().top;
-                let elementLeft = currElement.getBoundingClientRect().left;
-                let elementWidth = currElement.getBoundingClientRect().width;
-                let elementHeight = currElement.getBoundingClientRect().height;
-                const newX = elementLeft + elementWidth/2;
-                const newY = elementTop + elementHeight/2;
-                setGradientRadius(120);
-                setCurrGradientPosition({
-                    x: `${newX}px`,
-                    y: `${newY}px`
-                });
-                
-            }else{
-                setCurrGradientPosition({
-                    x: `50%`,
-                    y: `50%`
-                });
-                setGradientRadius(400);
-
-
-            }
-           
-        }
-    }, [isMouseOver, currGradientPosition.x, currGradientPosition.y])
 
 
     
   return (
-    <div id={`categoryIcon${product.id}`} style={{transform:`translateY(${displacementPosition}rem)`, transitionDelay:`${position/3}s`, transitionProperty:"transform", transitionTimingFunction:"ease-out", transitionDuration:"200ms"}} className={`text-primary10 flex flex-col font-semibold items-center justify-center h-[80px] laptop:h-[90px] desktop:h-[100px] w-[80px] laptop:w-[90px] desktop:w-[100px] hover:bg-gradient-to-t from-primary1 to-primary2 rounded-[50%] shadow-2xl cursor-pointer border-[1px] border-primary4 transition-all hover:scale-110`}>
+    <div id={`categoryIcon${product.id}`} style={{transform:`translateY(${displacementPosition}rem)`, transitionDelay:`${position/3}s`, transitionProperty:"transform", transitionTimingFunction:"ease-out", transitionDuration:"200ms"}} className={`tomatoes text-primary10 flex flex-col font-semibold items-center justify-center h-[80px] laptop:h-[90px] desktop:h-[100px] w-[80px] laptop:w-[90px] desktop:w-[100px] hover:bg-gradient-to-t from-primary1 to-primary2 rounded-[50%] shadow-2xl cursor-pointer border-[1px] border-primary4 transition-all hover:scale-110`}>
         <Icon className=" text-[1.5rem] laptop:text-[2.5rem] h-[30%]" icon={product.icon} />
         <p className="text-[12px] opacity-65 pt-2 capitalize">{product.name}</p>
     </div>
