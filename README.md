@@ -27,4 +27,4 @@ Follow these steps to get the project up and running on your local machine.
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/jeslor/market_place_landing.git
-   cd nextjs-shop-landing-page
+   cd market_place_landing
