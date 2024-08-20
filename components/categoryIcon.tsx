@@ -43,19 +43,14 @@ const [resetPosition, setResetPosition] = useState(true);
                 if(clientX >= left && clientX <= right && clientY >= top && clientY <= bottom){
                     setResetPosition(false);
                     setCurrGradientPosition({x:`${left + width/2}px`, y:`${top +  height/2}px`});
-                    setGradientRadius(width > height ? width : height);
+                    setGradientRadius(width > height ? width+width/2 : height+height/2);
                 }else{
                     setResetPosition(true);
-                    setCurrGradientPosition({x:`50%`, y:`50%`});
+                    setCurrGradientPosition({x:`${clientX}px`, y:`${clientY}px`});
                     setGradientRadius(400);
                 }
-
             }
         }
-
-            
-        
-      
         window.addEventListener('mousemove', handleMouseMove);
         return () => {
           window.removeEventListener('mousemove', handleMouseMove);

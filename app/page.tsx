@@ -12,6 +12,7 @@ const Landing = () => {
  });
  const [gradientRadius, setGradientRadius] = useState(400);
  const [newStyle, setNewStyle] = useState({
+  transition: 'background 0.5s',
   background: `radial-gradient(circle at center, #52462e64;, transparent ${gradientRadius}px)`
  });
 
@@ -19,6 +20,7 @@ const Landing = () => {
 
   useEffect(() => {
     setNewStyle({
+      transition: 'background 0.5s',
       background: `radial-gradient(circle at ${currGradientPosition.x} ${currGradientPosition.y}, #52462e70, transparent ${gradientRadius}px)`
     })
   }, [currGradientPosition.x, currGradientPosition.y, gradientRadius])
