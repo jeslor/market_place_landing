@@ -1,3 +1,4 @@
+<img width="1512" alt="Screenshot 2024-08-20 at 12 45 43" src="https://github.com/user-attachments/assets/cab8ef1e-e9ba-4ca7-8616-e8902358df55">
 # 🛍️ Modern Online Shop Landing Page
 
 Welcome to the **Modern Online Shop Landing Page**! This project is a sleek and modern UI design built with Next.js, offering a responsive and engaging shopping experience.
